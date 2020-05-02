@@ -14,7 +14,7 @@ public class Camera extends GameObject{
     private float WidthView;
     private float heightView;
     
-    private boolean islocked = false;
+    private boolean isLocked = false;
 
     public Camera(float WidthView, float heightView, float posX, float posY, GameWorld gameWorld) {
         super(posX, posY, gameWorld);
@@ -24,25 +24,24 @@ public class Camera extends GameObject{
 
     
     public void lock(){
-        islocked = true;
+        isLocked = true;
     }
     
     public void unlock(){
-        islocked = false;
+        isLocked = false;
     }
     
     @Override
     public void Update() {
-        if(!islocked){
-            
-            Megaman mainCharater = getGameWorld().megaman;
-            
-            if(mainCharater.getPosX() - getPosX() > 400) setPosX(mainCharater.getPosX() - 400);
-            if(mainCharater.getPosX() - getPosX() < 200) setPosX(mainCharater.getPosX() - 200);
-            
-            if(mainCharater.getPosY() - getPosY() > 400) setPosY(mainCharater.getPosX() - 400);
-            else if(mainCharater.getPosY() - getPosY() < 250) setPosY(mainCharater.getPosY() - 250);
-            
+        if(!isLocked){
+        
+            Megaman mainCharacter = getGameWorld().megaman;
+
+            if(mainCharacter.getPosX() - getPosX() > 400) setPosX(mainCharacter.getPosX() - 400);
+            if(mainCharacter.getPosX() - getPosX() < 200) setPosX(mainCharacter.getPosX() - 200);
+
+            if(mainCharacter.getPosY() - getPosY() > 400) setPosY(mainCharacter.getPosY() - 400); // bottom
+            else if(mainCharacter.getPosY() - getPosY() < 250) setPosY(mainCharacter.getPosY() - 250);// top 
         }
     }
 

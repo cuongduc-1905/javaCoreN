@@ -1,6 +1,5 @@
 package com.Minh.gameobject;
 
-
 import com.Minh.effect.Animation;
 import com.Minh.gameobject.GameObject;
 import com.Minh.gameobject.GameWorld;
@@ -13,7 +12,6 @@ import java.awt.Rectangle;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author minh
@@ -22,7 +20,7 @@ public abstract class ParticularObject extends GameObject {
 
     public static final int LEAGUE_TEAM = 1;
     public static final int ENEMY_TEAM = 2;
-    
+
     public static final int LEFT_DIR = 0;
     public static final int RIGHT_DIR = 1;
 
@@ -32,26 +30,26 @@ public abstract class ParticularObject extends GameObject {
     public static final int DEATH = 3;
     public static final int NOBEHURT = 4;
     private int state = ALIVE;
-    
+
     private float width;
     private float height;
     private float mass;
     private float speedX;
     private float speedY;
     private int blood;
-    
+
     private int damage;
-    
+
     private int direction;
-    
+
     protected Animation behurtForwardAnim, behurtBackAnim;
-    
+
     private int teamType;
-    
+
     private long startTimeNoBeHurt;
     private long timeForNoBeHurt;
 
-    public ParticularObject(float x, float y, float width, float height, float mass, int blood, GameWorld gameWorld){
+    public ParticularObject(float x, float y, float width, float height, float mass, int blood, GameWorld gameWorld) {
 
         // posX and posY are the middle coordinate of the object
         super(x, y, gameWorld);
@@ -59,131 +57,133 @@ public abstract class ParticularObject extends GameObject {
         setHeight(height);
         setMass(mass);
         setBlood(blood);
-        
+
         direction = RIGHT_DIR;
 
     }
-    
-    public void setTimeForNoBehurt(long time){
+
+    public void setTimeForNoBehurt(long time) {
         timeForNoBeHurt = time;
     }
-    
-    public long getTimeForNoBeHurt(){
+
+    public long getTimeForNoBeHurt() {
         return timeForNoBeHurt;
     }
-    
-    public void setState(int state){
+
+    public void setState(int state) {
         this.state = state;
     }
-    
-    public int getState(){
+
+    public int getState() {
         return state;
     }
-    
-    public void setDamage(int damage){
-            this.damage = damage;
+
+    public void setDamage(int damage) {
+        this.damage = damage;
     }
 
-    public int getDamage(){
-            return damage;
+    public int getDamage() {
+        return damage;
     }
 
-    
-    public void setTeamType(int team){
+    public void setTeamType(int team) {
         teamType = team;
     }
-    
-    public int getTeamType(){
+
+    public int getTeamType() {
         return teamType;
     }
-    
-    public void setMass(float mass){
+
+    public void setMass(float mass) {
         this.mass = mass;
     }
 
-    public float getMass(){
-            return mass;
+    public float getMass() {
+        return mass;
     }
 
-    public void setSpeedX(float speedX){
+    public void setSpeedX(float speedX) {
         this.speedX = speedX;
     }
 
-    public float getSpeedX(){
+    public float getSpeedX() {
         return speedX;
     }
 
-    public void setSpeedY(float speedY){
+    public void setSpeedY(float speedY) {
         this.speedY = speedY;
     }
 
-    public float getSpeedY(){
+    public float getSpeedY() {
         return speedY;
     }
 
-    public void setBlood(int blood){
-        if(blood>=0)
-                this.blood = blood;
-        else this.blood = 0;
+    public void setBlood(int blood) {
+        if (blood >= 0) {
+            this.blood = blood;
+        } else {
+            this.blood = 0;
+        }
     }
 
-    public int getBlood(){
+    public int getBlood() {
         return blood;
     }
 
-    public void setWidth(float width){
+    public void setWidth(float width) {
         this.width = width;
     }
 
-    public float getWidth(){
+    public float getWidth() {
         return width;
     }
 
-    public void setHeight(float height){
+    public void setHeight(float height) {
         this.height = height;
     }
 
-    public float getHeight(){
+    public float getHeight() {
         return height;
     }
-    
-    public void setDirection(int dir){
+
+    public void setDirection(int dir) {
         direction = dir;
     }
-    
-    public int getDirection(){
+
+    public int getDirection() {
         return direction;
     }
-    
+
     public abstract void attack();
-    
-    
-    public boolean isObjectOutOfCameraView(){
-        if(getPosX() - getGameWorld().camera.getPosX() > getGameWorld().camera.getWidthView() ||
-                getPosX() - getGameWorld().camera.getPosX() < -50
-            ||getPosY() - getGameWorld().camera.getPosY() > getGameWorld().camera.getHeightView()
-                    ||getPosY() - getGameWorld().camera.getPosY() < -50)
+
+    public boolean isObjectOutOfCameraView() {
+        if (getPosX() - getGameWorld().camera.getPosX() > getGameWorld().camera.getWidthView()
+                || getPosX() - getGameWorld().camera.getPosX() < -50
+                || getPosY() - getGameWorld().camera.getPosY() > getGameWorld().camera.getHeightView()
+                || getPosY() - getGameWorld().camera.getPosY() < -50) {
             return true;
-        else return false;
+        } else {
+            return false;
+        }
     }
-    
-    public Rectangle getBoundForCollisionWithMap(){
+
+    public Rectangle getBoundForCollisionWithMap() {
         Rectangle bound = new Rectangle();
-        bound.x = (int) (getPosX() - (getWidth()/2));
-        bound.y = (int) (getPosY() - (getHeight()/2));
+        bound.x = (int) (getPosX() - (getWidth() / 2));
+        bound.y = (int) (getPosY() - (getHeight() / 2));
         bound.width = (int) getWidth();
         bound.height = (int) getHeight();
         return bound;
     }
 
-    public void beHurt(int damgeEat){
+    public void beHurt(int damgeEat) {
         setBlood(getBlood() - damgeEat);
         state = BEHURT;
         hurtingCallback();
     }
 
     @Override
-    public void Update(){
+    public void Update() {
         /*switch(state){
             case ALIVE:
                 
@@ -244,26 +244,36 @@ public abstract class ParticularObject extends GameObject {
                     state = ALIVE;
                 break;
         }*/
-        
+
     }
 
-    public void drawBoundForCollisionWithMap(Graphics2D g2){
+    public void drawBoundForCollisionWithMap(Graphics2D g2) {
         Rectangle rect = getBoundForCollisionWithMap();
         g2.setColor(Color.BLUE);
-        g2.drawRect(rect.x - (int) getGameWorld().camera.getPosX(), rect.y - (int) getGameWorld().camera.getPosY(), rect.width, rect.height);
+        g2.drawRect(
+            rect.x - (int) getGameWorld().camera.getPosX(),
+            rect.y - (int) getGameWorld().camera.getPosY(),
+            rect.width, rect.height
+        );
     }
 
-    public void drawBoundForCollisionWithEnemy(Graphics2D g2){
+    public void drawBoundForCollisionWithEnemy(Graphics2D g2) {
         Rectangle rect = getBoundForCollisionWithEnemy();
         g2.setColor(Color.RED);
-        g2.drawRect(rect.x - (int) getGameWorld().camera.getPosX(), rect.y - (int) getGameWorld().camera.getPosY(), rect.width, rect.height);
+        g2.drawRect(
+                rect.x - (int) getGameWorld().camera.getPosX(),
+                rect.y - (int) getGameWorld().camera.getPosY(),
+                rect.width,
+                rect.height
+        );
     }
 
     public abstract Rectangle getBoundForCollisionWithEnemy();
 
     public abstract void draw(Graphics2D g2);
-    
-    public void hurtingCallback(){};
-	
-}
 
+    public void hurtingCallback() {
+    }
+;
+
+}
