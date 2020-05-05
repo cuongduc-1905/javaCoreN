@@ -18,6 +18,10 @@ public class SortingAlgoritm {
      */
     private static final int [] Numbers ={3,4,5,6,1,2,0,6};
 
+    private static void maxHeapify(int i, int len, int[] Number) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
    
 
     
