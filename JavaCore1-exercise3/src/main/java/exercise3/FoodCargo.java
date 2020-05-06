@@ -29,14 +29,34 @@ public class FoodCargo extends Cargo{
 
     @Override
     public void inputData() {
-        super.inputData(); //To change body of generated methods, choose Tools | Templates.
-        SimpleDateFormat input = new SimpleDateFormat("dd/MM/yyyy");
-        System.out.println("nhap han su dung");
-        try {
-            Date exDates = input.parse(exDate);
-        } catch (ParseException ex) {
-            ex.printStackTrace();
-        }
+        super.inputData();
+        boolean isDone = false;
+        
+        do{
+            Scanner input = new Scanner(System.in);
+            System.out.println("nhap han su dung");
+            exDate = input.nextLine();
+            SimpleDateFormat idate = new SimpleDateFormat("yyyy-MM-dd");
+            
+            try {
+                Date exDates = idate.parse(exDate);
+            } catch (ParseException ex) {
+                Logger.getLogger(FoodCargo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }while(isDone);
+    }
+
+    public String getExDate() {
+        return exDate;
+    }
+
+    public void setExDate(String exDate) {
+        this.exDate = exDate;
+    }
+
+    @Override
+    public float tax() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

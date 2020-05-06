@@ -77,6 +77,69 @@ public class MainFood {
         }
         
     }
+    
+    public void DisplayInformation(){
+        for (Cargo cargo : listFood) {
+            cargo.displayData();
+        }
+    }
+    
+    public void sortByPrice(){
+    
+        for (int i = 0; i < listFood.size() - 1 ; i++) {
+            for (int j =  i + 1; j < listFood.size() - i; j++) {
+                if(listFood.get(i).getPrice() > listFood.get(j).getPrice()){
+                    Cargo cargo = listFood.get(i);
+                    listFood.set(i, listFood.get(j));
+                     listFood.set(j, cargo);
+                }
+            }
+        }
+        DisplayInformation();
+        
+    }
+    
+    public void sortByName(){
+    
+        for (int i = 0; i < listFood.size() - 1 ; i++) {
+            for (int j =  i + 1; j < listFood.size() - i; j++) {
+                if (listFood.get(i).getName().compareTo(listFood.get(j).getName()) > 0) {
+                    Cargo cargo = listFood.get(i);
+                     listFood.set(i, listFood.get(j));
+                     listFood.set(j, cargo);
+                }
+            }
+        }
+        DisplayInformation();
+    }
+    public void sreachbyName(){
+        Scanner input = new Scanner(System.in);
+        System.out.println("nhap ten nha cung cap");
+        String name = input.nextLine();
+        for (Cargo cargo : listFood) {
+            if(cargo.getName().contains(name)){
+                cargo.displayData();
+            }
+        }
+    }
+    
+    public void outOfStock(){
+        int isOver = 0;
+        for (int i = 0; i < listFood.size(); i++) {
+            if(listFood.get(i).getQuantity() == isOver){
+                listFood.get(i).displayData();
+            }
+        }
+    }
+    
+    public void lessTaxMoney(){
+        float taxMoney = 10f;
+        for (int i = 0; i < listFood.size(); i++) {
+            if(listFood.get(i).tax() <= taxMoney ){
+                listFood.get(i).tax();
+            }
+        }
+    }
     public static void main(String[] args) {
        MainFood food = new MainFood();
         int menu = 0;
@@ -86,30 +149,36 @@ public class MainFood {
                 case 1:
                     food.inputInformation();
                     break;
-//                case 2:
-//                    EM.hienThiTT();
-//                    break;
-//                case 3:
-//                    //EM.oderSalary();
-//                    EM.sxCalsalary();
-//                    break;
-//                case 4:
-//                    EM.sxtheotenBubbleSort();
-//                    //EM.oderName();
-//                    break;
-//                case 5:
-//                    EM.youngAge();
-//                    break;
-//                case 6:
-//                    EM.saerchNameAndId();
-//                    break;
+                case 2:
+                    food.DisplayInformation();
+                    break;
+                case 3:
+                    //EM.oderSalary();
+                    food.sortByPrice();
+                    break;
+                case 4:
+                    food.sortByName();
+                    //EM.oderName();
+                    break;
+                case 5:
+                    food.sreachbyName();
+                    break;
+                case 6:
+                    food.outOfStock();
+                    break;
                 case 7:
+                    food.lessTaxMoney();
+                    break;
+                case 8:
+                    System.out.println("Thoát");
+                    break;
+                case 9:
                     System.out.println("Thoát");
                     break;
             }
             
             
-        }while(menu > 0 && menu <7 );
+        }while(menu > 0 && menu <9 );
         
         
     }
