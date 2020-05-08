@@ -18,8 +18,8 @@ import javax.print.attribute.standard.DateTimeAtCompleted;
  * @author minh
  */
 public class FoodCargo extends Cargo{
-    private String exDate;
-
+    private int exDate;
+    
     @Override
     public void displayData() {
         super.displayData(); //To change body of generated methods, choose Tools | Templates.
@@ -35,28 +35,32 @@ public class FoodCargo extends Cargo{
         do{
             Scanner input = new Scanner(System.in);
             System.out.println("nhap han su dung");
-            exDate = input.nextLine();
-            SimpleDateFormat idate = new SimpleDateFormat("yyyy-MM-dd");
-            
-            try {
-                Date exDates = idate.parse(exDate);
-            } catch (ParseException ex) {
-                Logger.getLogger(FoodCargo.class.getName()).log(Level.SEVERE, null, ex);
+            this.exDate = Integer.parseInt(input.nextLine());
+            if(this.exDate > 3){
+                isDone = true ;
+            }else{
+                System.out.println("nhap lon nho 3 ngay");
             }
-        }while(isDone);
+            
+        }while(!isDone);
     }
 
-    public String getExDate() {
+    public int getExDate() {
         return exDate;
     }
 
-    public void setExDate(String exDate) {
+    public void setExDate(int exDate) {
         this.exDate = exDate;
     }
 
     @Override
     public float tax() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return 0;
+        
+    }
+    @Override
+    public int ngay(){
+        return exDate;
     }
     
     

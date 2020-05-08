@@ -38,8 +38,8 @@ public  class AgriCargo extends Cargo{
         }while(!isDone);
         
         
-        System.out.println("nhap tien thue");
-        tax = Float.parseFloat(input.nextLine());
+//        System.out.println("nhap tien thue");
+//        tax = Float.parseFloat(input.nextLine());
     }    
     
     public float getTax() {
@@ -56,6 +56,10 @@ public  class AgriCargo extends Cargo{
         System.out.println("\tthong tin thue:" + tax +"%");
         return tax;
     }
-    
+
+    @Override
+    public int ngay(){
+        return 0;   
+    }
     
 }

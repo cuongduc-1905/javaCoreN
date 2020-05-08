@@ -20,6 +20,8 @@ public abstract class Cargo {
     
     public abstract float tax();
     
+    public abstract int ngay();
+   // public abstract int ngay();
     public Cargo(){
         
     }
@@ -66,7 +68,7 @@ public abstract class Cargo {
             }else{
                 System.out.println("lon hon hoac bang 0");
             }
-        }while(isDone);
+        }while(!isDone);
         
         do{
             System.out.println("nhap gia");

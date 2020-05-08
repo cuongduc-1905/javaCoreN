@@ -134,12 +134,20 @@ public class MainFood {
     
     public void lessTaxMoney(){
         float taxMoney = 10f;
-        for (int i = 0; i < listFood.size(); i++) {
-            if(listFood.get(i).tax() <= taxMoney ){
-                listFood.get(i).tax();
+        for (Cargo cargo : listFood) {
+            if(cargo.tax() > taxMoney){
+                 cargo.displayData();
             }
+           
         }
     }
+    
+//    public void lessDate(){
+//        int lessDate = 30;
+//        for (Cargo cargo : listFood) {
+//            if(cargo)
+//        }
+//    }
     public static void main(String[] args) {
        MainFood food = new MainFood();
         int menu = 0;
@@ -170,7 +178,8 @@ public class MainFood {
                     food.lessTaxMoney();
                     break;
                 case 8:
-                    System.out.println("Thoát");
+                    //food.lessDate();
+                    //System.out.println("Thoát");
                     break;
                 case 9:
                     System.out.println("Thoát");
