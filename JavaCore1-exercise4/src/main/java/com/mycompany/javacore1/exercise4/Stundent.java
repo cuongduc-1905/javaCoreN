@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  * @author minh
  */
-public class Stundent extends IStudent{
+public class Stundent implements IStudent{
     private String id,name;
     private float score1,score2,score3,avg;
 
@@ -111,6 +111,7 @@ public class Stundent extends IStudent{
 
     @Override
     public void calculateAvg() {
+       
        float cAvg = 0;
        cAvg = (getScore1() + getScore2() + getScore3())/3;
        System.out.println("diem trung binh" + cAvg);

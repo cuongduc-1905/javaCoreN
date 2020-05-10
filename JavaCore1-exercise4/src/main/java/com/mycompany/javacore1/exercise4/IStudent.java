@@ -9,12 +9,10 @@ package com.mycompany.javacore1.exercise4;
  *
  * @author minh
  */
-public abstract class IStudent {
+public interface IStudent {
+    void inputData();
     
-    public abstract void inputData();
+    void display();
     
-    public abstract void display();
-     
-    public abstract void calculateAvg();
-    
+    void calculateAvg();
 }
