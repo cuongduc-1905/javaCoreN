@@ -11,20 +11,20 @@ import java.util.Scanner;
  *
  * @author minh
  */
-public class Stundent implements IStudent{
+public class Student1 implements IStudent1{
+    
     private String id,name;
-    private float score1,score2,score3,avg;
+    private float score1, score2, score3,rank;
 
-    public Stundent() {
+    public Student1() {
     }
 
-    public Stundent(String id, String name, float score1, float score2, float score3, float avg) {
+    public Student1(String id, String name, float score1, float score2, float score3) {
         this.id = id;
         this.name = name;
         this.score1 = score1;
         this.score2 = score2;
         this.score3 = score3;
-        this.avg = avg;
     }
 
     public String getId() {
@@ -67,55 +67,60 @@ public class Stundent implements IStudent{
         this.score3 = score3;
     }
 
-    public float getAvg() {
-        return avg;
+    public float getRank() {
+        return rank;
     }
 
+    public void setRank(float rank) {
+        this.rank = rank;
+    }
+    
+    
+    
+    
+    
     
     
     
     @Override
     public void inputData() {
         Scanner input = new Scanner(System.in);
-        System.out.println("nhap ma sinh vien");
+        System.out.println("nhap id");
         id = input.nextLine();
-        System.out.println("nhap ten sinh");
+        System.out.println("nhap name");
         name = input.nextLine();
-        System.out.println("nhap diem 1");
+        System.out.println("nhap score1");
         score1 = Float.parseFloat(input.nextLine());
-        System.out.println("nhap diem 2");
+        System.out.println("nhap score2");
         score2 = Float.parseFloat(input.nextLine());
-        System.out.println("nhap diem 3");
+        System.out.println("nhap score3");
         score3 = Float.parseFloat(input.nextLine());
-    }
-
-    @Override
-    public void display() {
-        System.out.println("thong tin sinh vien");
-        System.out.println("\tthong tin id:" + id);
-        System.out.println("\tthong tin name:" + name);
-        System.out.println("\tthong tin score1:" + score1);
-        System.out.println("\tthong tin score2:" + score2);
-        System.out.println("\tthong tin score3:" + score3);
-        float rank = 0;
-        if(avg >= 8.0){
-            System.out.println("\tthong tin gio");
-        }else if(6.5 <= avg  && avg < 8.0){
-            System.out.println("diem kha");
+        rank = (score1 + score2 + score3)/3;
+        if(rank >= 8){
+            System.out.println("gioi");
+        }else if(rank< 6.5f && rank < 8){
+            System.out.println("kha");
         }else{
-            System.out.println("diem trung binh");
+            System.out.println("trung binh");
         }
-        
-        
     }
 
     @Override
-    public void calculateAvg() {
-       
-       float cAvg = 0;
-       cAvg = (score1 + score2 + score3)/3;
-       System.out.println("diem trung binh" + cAvg);
+    public void DisplayData() {
+        System.out.println("thong tin cu sinh vien");
+        System.out.println("ma sinh vien id:"+ id+"\n" 
+                + "ten sinh vien name:"+ name +"\n" 
+                +"score1:"+ score1 +"\n"
+                +"score2:"+ score2 +"\n"
+                +"score3:"+ score3 +"\n"
+                +"rank :" + rank +"\n"
+        );
     }
-    
+
+    @Override
+    public void calculateAGV() {
+        float AGV = 0;
+        AGV = (score1 + score2 + score3)/3;
+    }
     
 }

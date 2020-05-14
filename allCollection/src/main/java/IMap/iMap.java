@@ -15,6 +15,7 @@ import java.util.Iterator;
 public class iMap {
     //hashMap kg thep tu tu 
     public static void main(String[] args) {
+        //HasMap
          HashMap<Integer, String> hn = new HashMap<>();  
          hn.put(1, "one");
          hn.put(2, "two");
@@ -29,6 +30,8 @@ public class iMap {
         for(String value : hn.values()){
             System.out.println(value);
         }
+        //treeMap
+        
     }
     
    

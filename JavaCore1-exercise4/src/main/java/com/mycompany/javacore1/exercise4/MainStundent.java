@@ -17,7 +17,7 @@ public class MainStundent {
     /**
      * @param args the command line arguments
      */
-    ArrayList<IStudent> listStundent = new ArrayList<>();
+    ArrayList<Stundent> listStundent = new ArrayList<>();
     
     public int showMenu(){
             System.out.println("nhap thong tin");
@@ -39,20 +39,30 @@ public class MainStundent {
         int n = click.nextInt();
         for (int i = 0; i < n; i++) {
             System.out.println("xin vui long nhap lan:" + (i+1));
-            IStudent sut = new Stundent();
+            Stundent sut = new Stundent();
             sut.inputData();
             listStundent.add(sut);
                     
         }
     }
     public void displayTT(){
-        for (IStudent iStudent : listStundent) {
+        for (Stundent iStudent : listStundent) {
             iStudent.display();
         }
     }
     public void avg(){
-        for (IStudent iStudent : listStundent) {
+        for (Stundent iStudent : listStundent) {
             iStudent.calculateAvg();
+        }
+    }
+    
+    public void searchName(){
+        Scanner names = new Scanner(System.in);
+        String name = names.nextLine();
+        for (int i = 0; i < listStundent.size(); i++) {
+           if(listStundent.get(i).getName().contains(name)){
+               listStundent.get(i).display();
+           } 
         }
     }
     
@@ -72,6 +82,11 @@ public class MainStundent {
                 case 3:
                     main.avg();
                     break;
+                case 4:
+                   main.searchName();
+                   break;
+                case 5:
+                    
             }
             
             

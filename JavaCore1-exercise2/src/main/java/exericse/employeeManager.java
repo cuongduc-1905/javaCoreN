@@ -104,7 +104,7 @@ public class employeeManager {
         for (int i = 0; i < listNhanVien.size() - 1; i++) {
             for (int j = i + 1; j < listNhanVien.size(); j++) {
                 if (listNhanVien.get(i).getName().compareTo(listNhanVien.get(j).getName()) > 0) {
-                    NhanVien nv= listNhanVien.get(i);
+                    NhanVien nv = listNhanVien.get(i);
                      listNhanVien.set(i, listNhanVien.get(j));
                      listNhanVien.set(j, nv);
                 }
