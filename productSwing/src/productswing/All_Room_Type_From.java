@@ -43,7 +43,7 @@ public class All_Room_Type_From extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Room_Number", "Label", "Price"
+                "Type_iD", "Label", "Price"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

@@ -298,11 +298,11 @@ public class ManageClientsFrom extends javax.swing.JFrame {
                 if(client.editClient(id, fname, lname, phone, email)){
                     JOptionPane.showMessageDialog(rootPane, " Clien edit successfully", "edit client", JOptionPane.INFORMATION_MESSAGE);
                 }else{
-                    JOptionPane.showMessageDialog(rootPane, "client not edit", "edit client error", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(rootPane, "client not edit", "edit client error", JOptionPane.ERROR_MESSAGE);
                 }
                  
             }catch(NumberFormatException ex){
-                JOptionPane.showMessageDialog(rootPane, ex.getMessage() + "Enter the client id(number)", "client id error", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage() + "Enter the client id(number)", "client id error", JOptionPane.ERROR_MESSAGE);
             }
             
             
@@ -327,7 +327,7 @@ public class ManageClientsFrom extends javax.swing.JFrame {
             if(client.addClient(fname, lname, phone, email)){
                 JOptionPane.showMessageDialog(rootPane, "New Clien add successfully", "add client", JOptionPane.INFORMATION_MESSAGE);
             }else{
-                JOptionPane.showMessageDialog(rootPane, "client not add", "add client error", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(rootPane, "client not add", "add client error", JOptionPane.ERROR_MESSAGE);
             }
         }
         
@@ -359,7 +359,7 @@ public class ManageClientsFrom extends javax.swing.JFrame {
                 if(client.removeclient(id)){
                     JOptionPane.showMessageDialog(rootPane, " Clien delete successfully", "delete client", JOptionPane.INFORMATION_MESSAGE);
                 }else{
-                    JOptionPane.showMessageDialog(rootPane, "client not delete", "delelte client error", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(rootPane, "client not delete", "delelte client error", JOptionPane.ERROR_MESSAGE);
                 }
                  
             }catch(NumberFormatException ex){
