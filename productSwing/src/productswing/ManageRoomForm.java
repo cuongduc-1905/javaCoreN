@@ -1,40 +1,30 @@
+package productswing;
+
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import productswing.All_Room_Type_From;
+import productswing.Rooms;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package productswing;
-
-import javax.swing.ButtonGroup;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author minh
  */
-public class ManageRoomsForm extends javax.swing.JFrame {
+public class ManageRoomForm extends javax.swing.JFrame {
 
     /**
-     * Creates new form ManageRoomsForm
+     * Creates new form ManageRoomForm
      */
-    
-    Rooms rooms = new Rooms();
-    public ManageRoomsForm() {
+     Rooms rooms = new Rooms();
+    public ManageRoomForm() {
         initComponents();
-        //dispaly room_type id in comcobox
-        rooms.fillRoomTypeJcomboboxJTable(jComboBoxType);
-        //show all room in jTsable 
-        rooms.fillRoomJTable(jTable1);
-        //set a height to jtable
-        jTable1.setRowHeight(30);
-        
-        //create a button group for th radi
-        ButtonGroup bg = new ButtonGroup();
-        bg.add(jRadioButton2Yes);
-        bg.add(jRadioButton1No);
-        
     }
 
     /**
@@ -69,7 +59,8 @@ public class ManageRoomsForm extends javax.swing.JFrame {
         jRadioButton2Yes = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(577, 79));
+        setAlwaysOnTop(true);
+        setBackground(new java.awt.Color(90, 65, 40));
 
         jPanel1.setBackground(new java.awt.Color(101, 78, 79));
         jPanel1.setPreferredSize(new java.awt.Dimension(964, 609));
@@ -253,7 +244,7 @@ public class ManageRoomsForm extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                 .addComponent(jButton_Refresh_Table_Data, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1))
-            .addContainerGap(187, Short.MAX_VALUE))
+            .addContainerGap(135, Short.MAX_VALUE))
     );
     jPanel1Layout.setVerticalGroup(
         jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -297,103 +288,15 @@ public class ManageRoomsForm extends javax.swing.JFrame {
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1079, Short.MAX_VALUE)
+        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1027, Short.MAX_VALUE)
     );
     layout.setVerticalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
+        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
     );
 
     pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jRadioButton1NoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1NoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1NoActionPerformed
-
-    private void jButton1ShowRoomTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ShowRoomTypeActionPerformed
-        // TODO add your handling code here:
-        All_Room_Type_From roomTypefom = new All_Room_Type_From();
-        roomTypefom.setVisible(true);
-        roomTypefom.pack();
-        roomTypefom.setLocationRelativeTo(null);
-        roomTypefom.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    }//GEN-LAST:event_jButton1ShowRoomTypeActionPerformed
-
-    private void jButton_Refresh_Table_DataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Refresh_Table_DataActionPerformed
-
-        jTable1.setModel(new DefaultTableModel(null, new Object[]{"Number","Type","Phone","Reserved"}));
-
-        rooms.fillRoomJTable(jTable1);
-    }//GEN-LAST:event_jButton_Refresh_Table_DataActionPerformed
-
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
-
-        int rIndex = jTable1.getSelectedRow();
-
-        //dispaly data
-        jTextFieldNumber.setText(model.getValueAt(rIndex, 0).toString());
-        jComboBoxType.setSelectedItem(model.getValueAt(rIndex, 1));
-        jTextFieldPhone.setText(model.getValueAt(rIndex,2).toString());
-
-        String isReserved = model.getValueAt(rIndex, 3).toString();
-        if(isReserved.equals("Yes")){
-            jRadioButton2Yes.setSelected(true);
-        }else if(isReserved.equals("No")){
-            jRadioButton1No.setSelected(true);
-        }
-    }//GEN-LAST:event_jTable1MouseClicked
-
-    private void jButtonClearFieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearFieldsActionPerformed
-        //remove text from all
-        jTextFieldNumber.setText("");
-        jTextFieldPhone.setText("");
-        jComboBoxType.setSelectedIndex(0);
-        jRadioButton1No.setSelected(true);
-    }//GEN-LAST:event_jButtonClearFieldsActionPerformed
-
-    private void jButtonRemoveRoomsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveRoomsActionPerformed
-        // TODO add your handling code here:
-        try{
-
-            int roomNumber = Integer.valueOf(jTextFieldNumber.getText());
-            if(rooms.removeRooms(roomNumber)){
-                JOptionPane.showMessageDialog(rootPane, "remove successfully", "remove room", JOptionPane.INFORMATION_MESSAGE);
-            }else{
-                JOptionPane.showMessageDialog(rootPane, "room not delete", "room delelte error", JOptionPane.ERROR_MESSAGE);
-            }
-
-        }catch(NumberFormatException ex){
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage() + "Enter the room", "room id error", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_jButtonRemoveRoomsActionPerformed
-
-    private void jButtonAddRoomsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddRoomsActionPerformed
-        //add a new client
-
-        try{
-
-            int roomNuber = Integer.valueOf(jTextFieldNumber.getText());
-            int roomTyoe = Integer.valueOf(jComboBoxType.getSelectedItem().toString());
-            String phone = jTextFieldPhone.getText();
-            //            if(roomNuber..equals("") || roomTyoe.trim().equals("") || phone.trim().equals("") ){
-                //            JOptionPane.showMessageDialog(rootPane, "Required Fields -> fist/name + number", "Empty file", JOptionPane.INFORMATION_MESSAGE);
-                //            }else{
-                if (rooms.addRooms(roomNuber, roomTyoe, phone)) {
-                    JOptionPane.showMessageDialog(rootPane, "new room succsessfully", "add room", JOptionPane.INFORMATION_MESSAGE);
-                }else{
-                    JOptionPane.showMessageDialog(rootPane, " room not add", "room error", JOptionPane.ERROR_MESSAGE);
-
-                }
-                //}
-
-        }catch(NumberFormatException ex){
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage() + "Enter the room", "room id error", JOptionPane.ERROR_MESSAGE);
-        }
-
-        //get data from the fields
-    }//GEN-LAST:event_jButtonAddRoomsActionPerformed
 
     private void jButtonEditRoomsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditRoomsActionPerformed
         //edit the select client
@@ -424,6 +327,94 @@ public class ManageRoomsForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonEditRoomsActionPerformed
 
+    private void jButtonAddRoomsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddRoomsActionPerformed
+        //add a new client
+
+        try{
+
+            int roomNuber = Integer.valueOf(jTextFieldNumber.getText());
+            int roomTyoe = Integer.valueOf(jComboBoxType.getSelectedItem().toString());
+            String phone = jTextFieldPhone.getText();
+            //            if(roomNuber..equals("") || roomTyoe.trim().equals("") || phone.trim().equals("") ){
+                //            JOptionPane.showMessageDialog(rootPane, "Required Fields -> fist/name + number", "Empty file", JOptionPane.INFORMATION_MESSAGE);
+                //            }else{
+                if (rooms.addRooms(roomNuber, roomTyoe, phone)) {
+                    JOptionPane.showMessageDialog(rootPane, "new room succsessfully", "add room", JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, " room not add", "room error", JOptionPane.ERROR_MESSAGE);
+
+                }
+                //}
+
+        }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage() + "Enter the room", "room id error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        //get data from the fields
+    }//GEN-LAST:event_jButtonAddRoomsActionPerformed
+
+    private void jButtonRemoveRoomsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveRoomsActionPerformed
+        // TODO add your handling code here:
+        try{
+
+            int roomNumber = Integer.valueOf(jTextFieldNumber.getText());
+            if(rooms.removeRooms(roomNumber)){
+                JOptionPane.showMessageDialog(rootPane, "remove successfully", "remove room", JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "room not delete", "room delelte error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage() + "Enter the room", "room id error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonRemoveRoomsActionPerformed
+
+    private void jButtonClearFieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearFieldsActionPerformed
+        //remove text from all
+        jTextFieldNumber.setText("");
+        jTextFieldPhone.setText("");
+        jComboBoxType.setSelectedIndex(0);
+        jRadioButton1No.setSelected(true);
+    }//GEN-LAST:event_jButtonClearFieldsActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+
+        int rIndex = jTable1.getSelectedRow();
+
+        //dispaly data
+        jTextFieldNumber.setText(model.getValueAt(rIndex, 0).toString());
+        jComboBoxType.setSelectedItem(model.getValueAt(rIndex, 1));
+        jTextFieldPhone.setText(model.getValueAt(rIndex,2).toString());
+
+        String isReserved = model.getValueAt(rIndex, 3).toString();
+        if(isReserved.equals("Yes")){
+            jRadioButton2Yes.setSelected(true);
+        }else if(isReserved.equals("No")){
+            jRadioButton1No.setSelected(true);
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton_Refresh_Table_DataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Refresh_Table_DataActionPerformed
+
+        jTable1.setModel(new DefaultTableModel(null, new Object[]{"Number","Type","Phone","Reserved"}));
+
+        rooms.fillRoomJTable(jTable1);
+    }//GEN-LAST:event_jButton_Refresh_Table_DataActionPerformed
+
+    private void jButton1ShowRoomTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ShowRoomTypeActionPerformed
+        // TODO add your handling code here:
+        All_Room_Type_From roomTypefom = new All_Room_Type_From();
+        roomTypefom.setVisible(true);
+        roomTypefom.pack();
+        roomTypefom.setLocationRelativeTo(null);
+        roomTypefom.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_jButton1ShowRoomTypeActionPerformed
+
+    private void jRadioButton1NoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1NoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton1NoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -441,20 +432,20 @@ public class ManageRoomsForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManageRoomsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageRoomForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManageRoomsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageRoomForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManageRoomsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageRoomForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManageRoomsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageRoomForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManageRoomsForm().setVisible(true);
+                new ManageRoomForm().setVisible(true);
             }
         });
     }

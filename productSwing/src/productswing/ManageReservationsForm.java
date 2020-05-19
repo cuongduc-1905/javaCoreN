@@ -312,20 +312,29 @@ public class ManageReservationsForm extends javax.swing.JFrame {
             String date_in = dateFormat.format(jDateChooserDateIn.getDate());
             String date_out = dateFormat.format(jDateChooserDataOut.getDate());
             
-//            if(roomNuber..equals("") || roomTyoe.trim().equals("") || phone.trim().equals("") ){
-//            JOptionPane.showMessageDialog(rootPane, "Required Fields -> fist/name + number", "Empty file", JOptionPane.INFORMATION_MESSAGE);
-//            }else{
-                if (reservation.addReservation(clinet_id, room_Nuber, date_in, date_out)) {
+            Date din = dateFormat.parse(date_in);
+            Date dout = dateFormat.parse(date_out);
+            
+            Date toDayDate = new Date();
+            
+            //id the date_in after or equal to today date 
+            if(din.after(toDayDate) || date_in.equals(toDayDate)){
+                if (reservation.addReservation(clinet_id, room_Nuber, date_in.toString(), date_out.toString())) {
                     JOptionPane.showMessageDialog(rootPane, "new Reservation succsessfully", "add reservation", JOptionPane.INFORMATION_MESSAGE);
                 }else{
                     JOptionPane.showMessageDialog(rootPane, " Reservation not add", "Reservation error", JOptionPane.ERROR_MESSAGE);
 
                 }
-            //}
-            
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "the Date in must be After or equel to today date", "Date in Id", JOptionPane.ERROR_MESSAGE);
+
+            }
             
         }catch(NumberFormatException ex){
            JOptionPane.showMessageDialog(rootPane, ex.getMessage() + "Enter the Reservation id", "Reservation id error", JOptionPane.ERROR_MESSAGE);
+        }
+        catch (ParseException ex) {
+                Logger.getLogger(ManageReservationsForm.class.getName()).log(Level.SEVERE, null, ex);
         }
        
 

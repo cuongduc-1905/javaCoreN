@@ -192,17 +192,19 @@ public class Rooms {
         }
         
     } 
-    // create a function to set a room to reserved or not
-    public boolean setRoomReserved(String isReserved, int number){
+   
          
-        PreparedStatement st;
+     //create a function to set a room reserved or not 
+     public boolean setRoomToReserved(String isResered, int number){
          
-        String editSql = "update room set revered =? where  r_number = ?";
+         PreparedStatement st;
+         
+         String editSql = "update room set revered = ? where r_number = ?";
          
         try {
             st = myConnection.getJDBCConnection().prepareStatement(editSql);
-            
-            st.setString(1, isReserved);
+         
+            st.setString(1, isResered);
             st.setInt(2, number);
             return (st.executeUpdate() > 0);
             
@@ -215,9 +217,41 @@ public class Rooms {
          
          
      }
+     
+     //create a fuction to check if a room is alredy reservaed
+    
+    public String isRoomReserved(int number){
+         
+         PreparedStatement st;
+         ResultSet rs;
+         String editSql = "select revered from room where r_number = ?";
          
          
          
+        try {
+            st = myConnection.getJDBCConnection().prepareStatement(editSql);
+         
+           
+            st.setInt(1, number);
+            rs = st.executeQuery();
+            
+            if(rs.next()){
+                return rs.getString(1);
+            }else{
+                return "";
+            }
+             
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(Rooms.class.getName()).log(Level.SEVERE, null, ex);
+            return "";
+        }
+         
+         
+         
+     } 
+     
+     
      
     
 }

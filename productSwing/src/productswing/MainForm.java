@@ -134,7 +134,8 @@ public class MainForm extends javax.swing.JFrame {
 
     private void jMenuItemRoomsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRoomsActionPerformed
         //open the manage rooms from
-        ManageRoomsForm roomsFrom = new ManageRoomsForm();
+   
+        ManageRoomForm roomsFrom = new ManageRoomForm();
         roomsFrom.setVisible(true);
         roomsFrom.pack();
         roomsFrom.setLocationRelativeTo(null);

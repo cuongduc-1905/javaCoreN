@@ -28,6 +28,11 @@ public class loginFrom extends javax.swing.JFrame {
      */
     public loginFrom() {
         initComponents();
+        setVisible(true);
+        pack();
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
     }
 
     /**
@@ -165,10 +170,10 @@ public class loginFrom extends javax.swing.JFrame {
         String password = String.valueOf(jPasswordField1.getPassword());
         
         if(username.trim().equals("")){
-            JOptionPane.showMessageDialog(rootPane, "Enter Your UserName to login", "Emty Uername", 2);
+            JOptionPane.showMessageDialog(rootPane, "Enter Your UserName to login", "Emty Uername", JOptionPane.INFORMATION_MESSAGE);
             
         }else if(password.trim().equals("")){
-            JOptionPane.showMessageDialog(rootPane, "Enter Your Password to login", "Emty Password", 2);
+            JOptionPane.showMessageDialog(rootPane, "Enter Your Password to login", "Emty Password", JOptionPane.INFORMATION_MESSAGE);
         }else{
             try {
                 MyConnection myConnection = new MyConnection();
@@ -197,7 +202,7 @@ public class loginFrom extends javax.swing.JFrame {
                     
                 }else{
                     //if the user enter wrong informa
-                    JOptionPane.showMessageDialog(rootPane, "wrong UserName or Password", "login error", 2);
+                    JOptionPane.showMessageDialog(rootPane, "wrong UserName or Password", "login error", JOptionPane.ERROR_MESSAGE);
                     
                 }
                 

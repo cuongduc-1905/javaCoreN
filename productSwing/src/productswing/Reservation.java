@@ -7,6 +7,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import productswing.MyConnection;
@@ -32,6 +33,8 @@ public class Reservation {
     //ALTER TABLE revervation ADD CONSTRAINT fk_room_id FOREIGN KEY (room_number) REFERENCES room(r_number) ON DELETE CASCADE
     //3 
     MyConnection myConnection = new MyConnection();
+    
+    Rooms room = new Rooms();
     //create function a add room
      public boolean addReservation(int clinet_id, int room_Nuber, String dateIn, String dateOut){
         
@@ -53,13 +56,21 @@ public class Reservation {
             st.setString(3, dateIn);
             st.setString(4, dateOut);
             
-           
-            if(st.executeUpdate() > 0){
-                return true;
+            if(room.isRoomReserved(room_Nuber).equals("No")){
+                if(st.executeUpdate() > 0){
+                    room.setRoomToReserved("Yes", room_Nuber);
+                    return true;
                 
+                }else{
+                    return false;
+            }
             }else{
+                JOptionPane.showMessageDialog(null, "this room is already ", "rom reservaed", JOptionPane.WARNING_MESSAGE);
+
                 return false;
             }
+            
+            
             
             
         } catch (SQLException ex) {
@@ -107,13 +118,19 @@ public class Reservation {
             st = myConnection.getJDBCConnection().prepareStatement(removeSql);
             
             st.setInt(1, reservation_id);
-            return (st.executeUpdate() > 0);
+            int Room_number = getRoomNumberFromReservation(reservation_id) ;
+            if((st.executeUpdate() > 0)){
+                room.setRoomToReserved("No", Room_number);
+                return true;
+                
+            }else{
+                return false;
+            }
+            
         } catch (SQLException ex) {
             Logger.getLogger(Reservation.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
-        
-        
         
     } 
      
@@ -153,7 +170,32 @@ public class Reservation {
     }
     
     
-    
+    // create a fuction to get the room number from reservation i
+    public int getRoomNumberFromReservation(int reservationID){
+        PreparedStatement ps;
+        ResultSet rs;
+        String selecSql = "select room_number from revervation where id = ?";
+        
+        try{
+            ps = myConnection.getJDBCConnection().prepareStatement(selecSql);
+            
+            ps.setInt(1, reservationID);
+            
+            rs = ps.executeQuery();
+            if(rs.next()){
+                return rs.getInt(1);
+                
+            }else{
+                return 0 ;
+            }
+            
+        }catch (SQLException ex) {
+            Logger.getLogger(Reservation.class.getName()).log(Level.SEVERE, null, ex);
+            return 0;
+        }
+        
+        
+    }
     
     
     
