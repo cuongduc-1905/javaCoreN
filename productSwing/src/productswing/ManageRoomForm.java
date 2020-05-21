@@ -1,11 +1,10 @@
 package productswing;
 
 
+import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import productswing.All_Room_Type_From;
-import productswing.Rooms;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -25,6 +24,16 @@ public class ManageRoomForm extends javax.swing.JFrame {
      Rooms rooms = new Rooms();
     public ManageRoomForm() {
         initComponents();
+        rooms.fillRoomTypeJcomboboxJTable(jComboBoxType);
+        //show all room in jTsable 
+        rooms.fillRoomJTable(jTable1);
+        //set a height to jtable
+        jTable1.setRowHeight(30);
+        
+        //create a button group for th radi
+        ButtonGroup bg = new ButtonGroup();
+        bg.add(jRadioButton2Yes);
+        bg.add(jRadioButton1No);
     }
 
     /**
@@ -173,6 +182,11 @@ public class ManageRoomForm extends javax.swing.JFrame {
     });
 
     jComboBoxType.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+    jComboBoxType.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jComboBoxTypeActionPerformed(evt);
+        }
+    });
 
     jLabel5.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
     jLabel5.setForeground(new java.awt.Color(254, 247, 247));
@@ -335,7 +349,7 @@ public class ManageRoomForm extends javax.swing.JFrame {
             int roomNuber = Integer.valueOf(jTextFieldNumber.getText());
             int roomTyoe = Integer.valueOf(jComboBoxType.getSelectedItem().toString());
             String phone = jTextFieldPhone.getText();
-            //            if(roomNuber..equals("") || roomTyoe.trim().equals("") || phone.trim().equals("") ){
+            //        if(roomNuber..equals("") || roomTyoe.trim().equals("") || phone.trim().equals("") ){
                 //            JOptionPane.showMessageDialog(rootPane, "Required Fields -> fist/name + number", "Empty file", JOptionPane.INFORMATION_MESSAGE);
                 //            }else{
                 if (rooms.addRooms(roomNuber, roomTyoe, phone)) {
@@ -378,7 +392,7 @@ public class ManageRoomForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonClearFieldsActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+         DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
 
         int rIndex = jTable1.getSelectedRow();
 
@@ -414,6 +428,10 @@ public class ManageRoomForm extends javax.swing.JFrame {
     private void jRadioButton1NoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1NoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton1NoActionPerformed
+
+    private void jComboBoxTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTypeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxTypeActionPerformed
 
     /**
      * @param args the command line arguments

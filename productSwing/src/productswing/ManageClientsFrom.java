@@ -177,13 +177,6 @@ public class ManageClientsFrom extends javax.swing.JFrame {
         }
     });
     jScrollPane1.setViewportView(jTable1);
-    if (jTable1.getColumnModel().getColumnCount() > 0) {
-        jTable1.getColumnModel().getColumn(0).setHeaderValue("ID");
-        jTable1.getColumnModel().getColumn(1).setHeaderValue("FirstName");
-        jTable1.getColumnModel().getColumn(2).setHeaderValue("LastName");
-        jTable1.getColumnModel().getColumn(3).setHeaderValue("hone");
-        jTable1.getColumnModel().getColumn(4).setHeaderValue("email");
-    }
 
     jButton_Refresh_Table_Data.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
     jButton_Refresh_Table_Data.setText("Refresh");
