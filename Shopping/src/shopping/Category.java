@@ -116,4 +116,34 @@ public class Category {
         
     }
     
+    public void allCatego(JTable table){
+        PreparedStatement ps ;
+        ResultSet rs;
+        
+        String sql = "select *from category";
+        
+        try {
+            ps = myConnection.getJDBCConnection().prepareStatement(sql);
+            
+            rs = ps.executeQuery();
+            
+            DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
+            Object[] row;
+            
+            while (rs.next()) {                
+                row = new Object[2];
+                row[0] = rs.getInt(1);
+                row[1] = rs.getString(2);
+                tableModel.addRow(row);
+            }
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Category.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }
+    
+    
 }

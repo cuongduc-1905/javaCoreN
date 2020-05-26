@@ -392,7 +392,7 @@ public class ManageRoomForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonClearFieldsActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-         DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
 
         int rIndex = jTable1.getSelectedRow();
 

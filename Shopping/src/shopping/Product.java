@@ -5,11 +5,14 @@
  */
 package shopping;
 
+import com.mysql.jdbc.Blob;
+import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,6 +23,40 @@ import javax.swing.table.DefaultTableModel;
 public class Product {
     
     MyConnection myConnection = new MyConnection();
+    
+    public boolean addProduct(int id, String name, int category_id, int price, int stork, String decription,InputStream Image){
+        PreparedStatement st;
+        
+        String addSql = "insert into product value(?,?,?,?,?,?,?)";
+        
+        try {
+            st = myConnection.getJDBCConnection().prepareStatement(addSql);
+        
+            st.setInt(1, id);
+            st.setString(2, name);
+            st.setInt(3, category_id);
+            st.setInt(4, price);
+            st.setInt(5, stork);
+            st.setString(6, decription);
+            st.setBlob(7, Image);
+            
+        if(st.executeUpdate() > 0){
+            return true;
+        }else{
+            return false;
+        }
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+    
+    
+    
+    
+    
+    
     
     public void showProduct(JTable table){
         PreparedStatement ps;
@@ -46,6 +83,34 @@ public class Product {
                 tableModel.addRow(row);
             }
             
+        } catch (SQLException ex) {
+            Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+    }
+    
+     public void allCategoryIdJcombobox(JComboBox combobox){
+        
+        PreparedStatement ps;
+        
+        ResultSet rs;
+        String sql = "select * from category";
+        
+        
+        try {
+            ps = myConnection.getJDBCConnection().prepareStatement(sql);
+        
+            rs = ps.executeQuery();
+            
+            
+            while (rs.next()) {
+       
+                
+                combobox.addItem(rs.getInt(1));
+            }
+        
         } catch (SQLException ex) {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
         }
