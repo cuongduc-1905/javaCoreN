@@ -16,7 +16,7 @@ import model.StudentDAO;
  * @author minh
  */
 public class program {
-    StudentDAO stundent = new StudentDAO();
+    //StudentDAO stundent = new StudentDAO();
     public int showMenu(){
             System.out.println("nhap thong tin");
             System.out.println(
@@ -50,8 +50,9 @@ public class program {
     public void display(){
         IDvhandler handler = DbHandlerFactory.getInstance().getHandler(DbHandlerFactory.STUDENT);//=StudentDAO.getInstance()
         for (Object item : handler.getAll()) {
-            student st = (student)item;
-            System.out.println(st.getId() + "\t" + st.getSV_name());
+            student st = (student) item;
+            //System.out.println(st.getId() + "\t" + st.getSV_name());
+            st.display();
             System.out.println("==================");
         }
     }
@@ -60,12 +61,24 @@ public class program {
         Scanner input = new Scanner(System.in);
         System.out.println("ban nhap email cam tim:");
         String email = input.nextLine();
+        //handler.getEmail(email);
+        for (Object item : handler.getAll()) {
+            student st = (student) item;
+            if(st.getSV_email().contains(email)){
+                st.display();
+                System.out.println("==================");
+            }
+            
+        }
         
-//        for (Object item : handler.getEmail(email)) {
-//              
-//        }
     }
-    
+    public void searchName(){
+        IDvhandler handler = DbHandlerFactory.getInstance().getHandler(DbHandlerFactory.STUDENT);
+        Scanner input = new Scanner(System.in);
+        System.out.println("ban nhap ten can tim");
+        String name = input.nextLine();
+        handler.getName(name);
+    }
     
     
     public static void main(String[] args) {
@@ -81,10 +94,10 @@ public class program {
                     main.display();
                     break;
                 case 3:
-                    //main.avg();
+                    main.search();
                     break;
                 case 4:
-                   //main.searchName();
+                   main.searchName();
                    break;
                 case 5:
                     break;

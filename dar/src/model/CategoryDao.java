@@ -14,7 +14,7 @@ import java.util.function.Predicate;
  *
  * @author minh
  */
-public class CategoryDao implements IDbHandler<Category, String>{
+public class CategoryDao implements IDbHandler<Category, Integer>{
     private static CategoryDao instance = new CategoryDao();
     private CategoryDao(){
         
@@ -39,13 +39,13 @@ public class CategoryDao implements IDbHandler<Category, String>{
     }
 
     @Override
-    public Category get(String id) {
-        return getAll().stream().filter(x -> x.getId().equals(instance))
+    public Category get(Integer id) {
+        return getAll().stream().filter(x -> x.getId() == id).findFirst().get();
     }
 
     @Override
     public void insert(Category entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       String sql = "insert into ";
     }
 
     @Override
@@ -54,7 +54,7 @@ public class CategoryDao implements IDbHandler<Category, String>{
     }
 
     @Override
-    public void delete(String id) {
+    public void delete(Integer id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

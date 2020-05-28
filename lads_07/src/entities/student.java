@@ -93,16 +93,16 @@ public class student {
         System.out.println("nhap email");
         SV_email = input.nextLine();
     }
-//    public void display(){
-//        System.out.println("thong tin cu sinh vien");
-//        System.out.println("ma sinh vien id:"+ id+"\n" 
-//                + "ten sinh vien name:"+ name +"\n" 
-//                +"score1:"+ score1 +"\n"
-//                +"score2:"+ score2 +"\n"
-//                +"score3:"+ score3 +"\n"
-//                +"rank :" + rank +"\n"
-//        );
-//    }
+    public void display(){
+        System.out.println("thong tin cu sinh vien");
+        System.out.println("ma sinh vien id:"+ Id+"\n" 
+                + "ma sinh vien:"+ Ma_sv +"\n" 
+                +"ten sinh vien:"+ SV_name +"\n"
+                +"dia chi:"+ SV_address +"\n"
+                +"so dien thoai:"+ SV_phone +"\n"
+                +"email:" + SV_email +"\n"
+        );
+    }
     
     
 }

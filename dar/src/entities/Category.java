@@ -11,22 +11,22 @@ package entities;
  */
 public class Category {
     
-    private String Id;
+    private int Id;
     private String Name;
 
     public Category() {
     }
 
-    public Category(String Id, String Name) {
+    public Category(Integer Id, String Name) {
         this.Id = Id;
         this.Name = Name;
     }
 
-    public String getId() {
+    public Integer getId() {
         return Id;
     }
 
-    public void setId(String Id) {
+    public void setId(Integer Id) {
         this.Id = Id;
     }
 

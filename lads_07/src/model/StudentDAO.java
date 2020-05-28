@@ -9,7 +9,6 @@ import entities.student;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import main_program.DataProcider;
 
 /**
  *
@@ -39,6 +38,11 @@ public class StudentDAO implements IDvhandler<student, String>{
     @Override
     public student getEmail(String email) {
         return getAll().stream().filter(x -> x.getSV_email().equals(email)).findFirst().get();
+    }
+    
+    @Override
+    public student getName(String name) {
+        return getAll().stream().filter(x -> x.getSV_name().contains(name)).findFirst().get();
     }
 
     @Override
@@ -77,6 +81,4 @@ public class StudentDAO implements IDvhandler<student, String>{
 
     
 
-    
-    
 }
