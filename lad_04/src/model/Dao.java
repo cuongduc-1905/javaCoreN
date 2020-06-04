@@ -14,8 +14,9 @@ import java.util.function.Predicate;
  */
 public interface Dao<T, Tkey> {
     List<T> getAll();
-    List<T> where(Predicate<T> predicate);
+    List<T> where(Tkey id);
     T getId(Tkey id);
+    T getName(String email);
     void add(T entity);
     void export(T entity , Tkey id, Tkey qty);
     void update(T entity);

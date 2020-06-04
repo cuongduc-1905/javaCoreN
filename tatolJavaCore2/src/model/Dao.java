@@ -6,19 +6,18 @@
 package model;
 
 import java.util.List;
-import java.util.function.Predicate;
 
 /**
  *
  * @author minh
  */
-public interface IDvhandler<T, Tkey>{
+public interface Dao<T, key> {
     List<T> getAll();
-    List<T> where(Predicate<T> predicate);
-    T getEmail(Tkey email);
-    T getName(Tkey name);
-    T getId(Integer id);
+    List<T> where(key id);
+    T getId(key id);
+    T getName(key name);
     void insert(T entity);
     void update(T entity);
-    void delete(Tkey id);
+    void delete(key id);
+    
 }

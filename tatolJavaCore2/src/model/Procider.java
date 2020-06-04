@@ -9,9 +9,8 @@ import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
-import uitl.ConnectDbs;
+import until.ConnectDBs;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.ResultSet;
@@ -20,22 +19,22 @@ import java.sql.ResultSet;
  *
  * @author minh
  */
-public class DataProcider {
-    private static DataProcider instance = new DataProcider();
+public class Procider {
+    private static Procider instance = new Procider();
     
-    private DataProcider(){
+    private Procider(){
         
     }
-    public static DataProcider getInstance(){
+    public static Procider getInstance(){
         if(instance == null){
-            instance = new DataProcider();
+            instance = new Procider();
         }
         return instance;
     }
     
-    public <T> List<T> executeQuery(String sql, Class<T>sourceType, Object... params){
+    public <T> List<T> execuQuery(String sql, Class<T>sourtType, Object... params){
         List<T> data = new ArrayList<>();
-        Connection conn = ConnectDbs.getJDBCConnection();
+        Connection conn = ConnectDBs.getJDBCconnect();
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             if(params != null && params.length > 0){
@@ -43,11 +42,9 @@ public class DataProcider {
                     ps.setObject(i+1, params[i]);
                 }
             }
-            
             ResultSet rs = ps.executeQuery();
-            while (rs.next()) {                
-
-                    T obj = sourceType.newInstance();
+                while (rs.next()) {                    
+                    T obj = sourtType.newInstance();
                     
                     Field[] field = obj.getClass().getDeclaredFields();
                     for (Field fs : field) {
@@ -56,19 +53,20 @@ public class DataProcider {
                         fs.set(obj, rs.getObject(fs.getName()));
                     }
                     data.add(obj);
-            }
-            
+                    
+                }
+        
         } catch (Exception ex) {
-            Logger.getLogger(DataProcider.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Procider.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
         return data;
-        
-        
     }
-    public int excuteUpdate(String sql, Object... params){
+    public int excuUpdate(String sql,Object... params){
+        Connection conn = ConnectDBs.getJDBCconnect();
+        
         try {
-            Connection conn = ConnectDbs.getJDBCConnection();
-            
             PreparedStatement ps = conn.prepareStatement(sql);
             if(params != null && params.length > 0){
                 for (int i = 0; i < params.length; i++) {
@@ -76,10 +74,12 @@ public class DataProcider {
                 }
             }
             return ps.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(DataProcider.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(Procider.class.getName()).log(Level.SEVERE, null, ex);
         }
         return 0;
     }
+    
+    
     
 }

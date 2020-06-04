@@ -21,18 +21,23 @@ public class ProductDao implements Dao<Product, Integer>{
 
     @Override
     public List<Product> getAll() {
-        String sql = "select * form product";
+        String sql = "SELECT * FROM `product`";
         return dataProcider.getInstance().executeQuery(sql, Product.class, null);
     }
 
     @Override
-    public List<Product> where(Predicate<Product> predicate) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Product> where(Integer id) {
+        return null;
     }
 
     @Override
     public Product getId(Integer id) {
         return getAll().stream().filter(x -> x.getId() == id).findFirst().get();
+    }
+    
+     @Override
+    public Product getName(String name) {
+        return getAll().stream().filter(x -> x.getName().contains(name)).findFirst().get();
     }
 
     @Override
@@ -82,8 +87,11 @@ public class ProductDao implements Dao<Product, Integer>{
 
     @Override
     public void delete(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "delete from product";
+        dataProcider.getInstance().executeUpdate(sql, id);
     }
+
+   
 
     
     

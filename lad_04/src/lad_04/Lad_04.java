@@ -6,6 +6,8 @@
 package lad_04;
 
 import entity.Product;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.Scanner;
 import model.ProductDao;
 
@@ -14,8 +16,9 @@ import model.ProductDao;
  * @author minh
  */
 public class Lad_04 {
-
-    public int showMenu(){
+    //private static final Locale currentLocal = new Locale("en", "US");
+    ProductDao product = new ProductDao();
+    public int showMenu(){  
             System.out.println("nhap thong tin");
             System.out.println(
                     "1. nhap thong tin san pham\n" +
@@ -28,11 +31,11 @@ public class Lad_04 {
             );
             Scanner input = new Scanner(System.in);
             int selection = input.nextInt();
-            return selection;
+            return selection;   
     }
     public void inputTT(){
         //IDvhandler handler = DbHandlerFactory.getInstance().getHandler(DbHandlerFactory.STUDENT);
-        ProductDao product = new ProductDao();
+        //ProductDao product = new ProductDao();
         Scanner click = new Scanner(System.in);
         System.out.println("tong so lan nhap");
         int n = click.nextInt();
@@ -43,6 +46,13 @@ public class Lad_04 {
             product.add(p);
                     
         }
+    }
+    public void searchName(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("ban nhap ten");
+        String name = sc.nextLine();
+        product.getName(name).display();
+        //product.getId(1).display();
     }
     
     public void export(){
@@ -82,7 +92,7 @@ public class Lad_04 {
                     main.export();
                     break;
                 case 4:
-                   //main.searchName();
+                   main.searchName();
                    break;
                 case 5:
                     break;
@@ -98,5 +108,10 @@ public class Lad_04 {
         
         
     }
+    
+//    public static String getResource(String key){
+//        ResourceBundle bundle = ResourceBundle.getBundle("internationalize/menu", currentLocal);
+//        return bundle.getString(key);
+//    }
     
 }

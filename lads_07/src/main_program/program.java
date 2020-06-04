@@ -16,7 +16,7 @@ import model.StudentDAO;
  * @author minh
  */
 public class program {
-    //StudentDAO stundent = new StudentDAO();
+    StudentDAO stundent = new StudentDAO();
     public int showMenu(){
             System.out.println("nhap thong tin");
             System.out.println(
@@ -56,28 +56,21 @@ public class program {
             System.out.println("==================");
         }
     }
-    public void search(){
-        IDvhandler handler = DbHandlerFactory.getInstance().getHandler(DbHandlerFactory.STUDENT);//=StudentDAO.getInstance()
+    public void searchEmail(){
+        //IDvhandler handler = DbHandlerFactory.getInstance().getHandler(DbHandlerFactory.STUDENT);//=StudentDAO.getInstance()
         Scanner input = new Scanner(System.in);
         System.out.println("ban nhap email cam tim:");
         String email = input.nextLine();
-        //handler.getEmail(email);
-        for (Object item : handler.getAll()) {
-            student st = (student) item;
-            if(st.getSV_email().contains(email)){
-                st.display();
-                System.out.println("==================");
-            }
-            
-        }
+        stundent.getEmail(email).display();
         
-    }
+        }
+       
     public void searchName(){
-        IDvhandler handler = DbHandlerFactory.getInstance().getHandler(DbHandlerFactory.STUDENT);
+        //IDvhandler handler = DbHandlerFactory.getInstance().getHandler(DbHandlerFactory.STUDENT);
         Scanner input = new Scanner(System.in);
         System.out.println("ban nhap ten can tim");
         String name = input.nextLine();
-        handler.getName(name);
+        stundent.getName(name).display();
     }
     
     
@@ -94,7 +87,7 @@ public class program {
                     main.display();
                     break;
                 case 3:
-                    main.search();
+                    main.searchEmail();
                     break;
                 case 4:
                    main.searchName();

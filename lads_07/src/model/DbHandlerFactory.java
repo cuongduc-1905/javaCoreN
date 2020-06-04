@@ -27,7 +27,7 @@ public class DbHandlerFactory {
         IDvhandler handler = null;
         switch(type) {
             case STUDENT:
-                handler = StudentDAO.getInstance();
+                handler = new StudentDAO();
                 break;
             
         }

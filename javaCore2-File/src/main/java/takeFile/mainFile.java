@@ -13,6 +13,8 @@ import java.io.ObjectInputFilter;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 
@@ -21,7 +23,7 @@ import java.util.ArrayList;
  * @author minh
  */
 public class mainFile{
-    private String filePath = "/home/minh/Documents/data.dat";
+    private String filePath = "/home/minh/Documents/data.txt";
     
     ArrayList<Book> listBook = new ArrayList();
     
@@ -35,7 +37,7 @@ public class mainFile{
         // open stream to write 
         FileOutputStream fOs = new FileOutputStream(filePath);// dec file
         ObjectOutputStream oOs = new  ObjectOutputStream(fOs); // dec object(name file)
-        
+            
         oOs.writeObject(listBook);//ghi object  listBook into file
         oOs.flush();
         oOs.close();
@@ -50,6 +52,16 @@ public class mainFile{
     }
     
     public static void main(String args[]) {
+        mainFile main = new mainFile();
+        try {
+            main.readWriteFile();
+            System.out.println("successfuly");
+        } catch (IOException ex) {
+            Logger.getLogger(mainFile.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(mainFile.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         
     }
 }

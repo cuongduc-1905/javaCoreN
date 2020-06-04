@@ -79,6 +79,11 @@ public class StudentDAO implements IDvhandler<student, String>{
         DataProcider.getInstance().excuteUpdate(sql, id);
     }
 
+    @Override
+    public student getId(Integer id) {
+        return getAll().stream().filter(x -> x.getId() == id).findFirst().get();
+    }
+
     
 
 }

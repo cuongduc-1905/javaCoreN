@@ -12,13 +12,12 @@ import java.util.function.Predicate;
  *
  * @author minh
  */
-public interface IDvhandler<T, Tkey>{
-    List<T> getAll();
-    List<T> where(Predicate<T> predicate);
-    T getEmail(Tkey email);
-    T getName(Tkey name);
-    T getId(Integer id);
-    void insert(T entity);
+public interface Dao<T, Tkey>{
+    List<T> getAllShoes();
+    List<T> where(Tkey id);
+    T getId(Tkey id);
+    T getShoesByName(String Name);
+    void addShoes(T entity);
     void update(T entity);
     void delete(Tkey id);
 }
