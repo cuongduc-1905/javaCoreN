@@ -32,12 +32,13 @@ public class ComputerDao implements Daos<Computer, Integer>{
 
     @Override
     public void insert(Computer entity) {
-        String sql = "insert into Comouter value(?,?,?,?)";
+        String sql = "insert into Comouter value(?,?,?,?,?)";
         Object[] params = new Object[]{
             entity.getId(),
             entity.getName(),
             entity.getPrice(),
-            entity.getYear()
+            entity.getYear(),
+            entity.getQty()
         };
         Procider.getInstance().excuUpdate(sql, params);
     }

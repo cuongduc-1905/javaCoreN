@@ -102,7 +102,7 @@ public class MainComputer {
     public void writeFile(){
         List<Computer> data = computer.getAll();
         try {
-            FileOutputStream fos = new FileOutputStream("data.txt");
+            FileOutputStream fos = new FileOutputStream("data.txt",true);
             //ObjectOutputStream oOs = new ObjectOutputStream(fos);
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
             for (Computer c : data) {
@@ -111,6 +111,7 @@ public class MainComputer {
             }
             bw.flush();
             bw.close();
+            fos.close();
             System.out.println("succsesfully");
         } catch (Exception ex) {
             Logger.getLogger(MainComputer.class.getName()).log(Level.SEVERE, null, ex);
@@ -129,8 +130,14 @@ public class MainComputer {
             int cnt = 1;
             while ((line = bufferedReader.readLine()) != null) {                
                 tokens = line.split(",");
-                //computer.insert(tokens);
-               
+                
+                 Computer c = new Computer();
+                 //c.setId(Integer.parseInt(tokens[0]));
+                 c.setName(tokens[1]);
+                 c.setPrice(Float.parseFloat(tokens[2]));
+                 c.setYear(Integer.parseInt(tokens[3]));
+                 c.setQty(Integer.parseInt(tokens[4]));
+                 computer.insert(c);
                 System.out.println(cnt +".\t"+ line);
                 cnt++;
             }
